@@ -21,6 +21,6 @@ export const logout = async () => {
   return response.data;
 }
 export const getProfile = async () => {
-  const res = await axios.get('https://streetconnect-hackathon.onrender.com/api/v1/user/profile');
+  const res = await axios.get('https://streetconnect-hackathon.onrender.com/api/users/profile');
   return res.data.data; // { user: { name, email, ... } }
 };
