@@ -8,7 +8,7 @@ const SHeader = () => {
   const { user, logout } = useAuth();
   const { t } = useLanguage();
   const handlelogout = async() => {
-    const response = await axios.post('http://localhost:5000/api/suppliers/logout', {}, {
+    const response = await axios.post('https://streetconnect-hackathon.vercel.app/api/suppliers/logout', {}, {
     withCredentials: true, // for cookie/token
   });
     window.location.href = '/login'; // Redirect to login after logout
