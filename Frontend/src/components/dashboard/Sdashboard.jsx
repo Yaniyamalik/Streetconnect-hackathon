@@ -2,7 +2,7 @@ import React from 'react';
 import { useAuth } from '../hooks/useAuth';
 import { useLanguage } from '../hooks/useLanguage';
 
-import StatsCard from '../Common/StatsCard';
+import StatsCard from '../common/StatsCard';
 import Orders from './Orders';
 import Warehouse from './Warehouse';
 import SHeader from '../common/SHeader';
