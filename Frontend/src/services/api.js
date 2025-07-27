@@ -1,7 +1,7 @@
 // client/src/services/api.js
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api'; // Ensure this matches your backend URL
+const API_URL = 'https://streetconnect-hackathon.vercel.app//api'; // Ensure this matches your backend URL
 
 // Create a single Axios instance
 const api = axios.create({
