@@ -4,9 +4,11 @@ import cookieParser from "cookie-parser"
 const app=express()
 
 
+
+
 app.use(
   cors({
-    origin: "https://streetconnect-hackathon-llxj.vercel.app/", // ← your Vercel frontend domain
+    origin: "https://streetconnect-hackathon-llxj.vercel.app", // No slash!
     credentials: true,
   })
 );
