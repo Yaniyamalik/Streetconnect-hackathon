@@ -4,6 +4,7 @@ import { useAuth } from '../hooks/useAuth';
 import { useLanguage } from '../hooks/useLanguage';
 import LanguageToggle from '../common/LanguaugeToggle';
 import { login } from '../../services/authService';
+import axios from "axios";
 const Login = () => {
   const [formData, setFormData] = useState({
     email: '',
@@ -17,7 +18,10 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await login(formData);
+      
+      const response = await axios.post('https://streetconnect-hackathon.onrender.com/api/users/login', formData, {
+    withCredentials: true, // for cookie/token
+  });
       navigate('/dashboard');
     } catch (error) {
       console.error('Login failed:', error);
