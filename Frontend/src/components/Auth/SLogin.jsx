@@ -18,7 +18,7 @@ const SLogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://streetconnect-hackathon.vercel.app/api/suppliers/login', formData, {
+      const response = await axios.post('https://streetconnect-hackathon.onrender.com/api/suppliers/login', formData, {
     withCredentials: true, // for cookie/token
   });
       navigate('/supplier-dashboard');
