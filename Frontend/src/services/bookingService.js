@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL =  'http://localhost:5000/api/bookings';
+const API_URL =  'https://streetconnect-hackathon.vercel.app/api/bookings';
 
 export const createBooking = async (bookingData) => {
   try {
