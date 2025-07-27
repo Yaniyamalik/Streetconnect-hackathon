@@ -8,7 +8,7 @@ import HomePage from './pages/HomePage';
 // import MarketplacePage from './pages/MarketplacePage';
 // import ContactPage from './pages/ContactPage';
  import './styles/tailwind.css';
- import { CartProvider } from './context/CartContext';
+ import { CartProvider } from './context/Cartcontext';
 import MarketplacePage from './pages/MarketplacePage';
 import WarehouseLocatorPage from './pages/WarehouseLocatorPage';
 import CapsuleBookingPage from './pages/CapsuleBookingPage';
