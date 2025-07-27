@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL =  'https://streetconnect-hackathon.vercel.app/api';
+const API_URL =  'https://streetconnect-hackathon.onrender.com/api';
 
 /**
  * Fetches warehouses based on search and filter criteria
