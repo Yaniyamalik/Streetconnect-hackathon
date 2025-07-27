@@ -8,7 +8,7 @@ const app=express()
 
 app.use(
   cors({
-    origin: "https://streetconnect-hackathon-llxj.vercel.app", // No slash!
+    origin: "https://streetconnect-hackathon-tau.vercel.app", // No slash!
     credentials: true,
   })
 );
