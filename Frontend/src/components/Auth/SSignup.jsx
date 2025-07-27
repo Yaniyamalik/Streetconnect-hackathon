@@ -25,7 +25,7 @@ const SSignup = () => {
     e.preventDefault();
     try {
         // console.log('Submitting form data:', formData)
-        const response = await axios.post('http://localhost:5000/api/suppliers/signup', formData, {
+        const response = await axios.post('https://streetconnect-hackathon.vercel.app/api/suppliers/signup', formData, {
     withCredentials: true, // for cookie/token
   });
       // calls the signup API
