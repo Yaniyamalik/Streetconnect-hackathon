@@ -16,7 +16,7 @@ import Login from './components/Auth/Login';
 import Signup from './components/Auth/Signup';
 import { AuthProvider } from './context/AuthContext';
 import { LanguageProvider } from './context/LanguaueContext';
-import Dashboard from './components/Dashboard/Dashboard';
+import Dashboard from './components/dashboard/dashboard';
 import SLogin from './components/Auth/SLogin';
 import WarehouseListingPage from './pages/WarehouseListingPage';
 import WharehouseListLoginPage from './pages/wharehouseListLoginPage'; 
