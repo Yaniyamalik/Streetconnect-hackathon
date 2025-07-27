@@ -4,6 +4,7 @@ import { useLanguage } from '../hooks/useLanguage';
 import LanguageToggle from '../common/LanguaugeToggle';
 import { signup } from '../../services/authService';
 import { useAuth } from '../hooks/useAuth';
+import axios from 'axios';
 const SSignup = () => {
   const [formData, setFormData] = useState({
     fullname: '',
@@ -23,8 +24,11 @@ const SSignup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        console.log('Submitting form data:', formData)
-      await signup(formData); // calls the signup API
+        // console.log('Submitting form data:', formData)
+        const response = await axios.post('http://localhost:5000/api/suppliers/signup', formData, {
+    withCredentials: true, // for cookie/token
+  });
+      // calls the signup API
       navigate('/supplier-dashboard');
     } catch (error) {
       console.error('Signup failed:', error);

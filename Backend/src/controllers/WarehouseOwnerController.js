@@ -3,12 +3,12 @@ import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/Apiresponse.js";
 import uploadonCloudinary from "../cloudinary.js";
 import jwt from "jsonwebtoken";
-import { Supplier } from "../models/Supplier.js";
+import { WarehouseOwner } from "../models/Warehouseowner.js";
 
 // Function to generate access and refresh tokens
 const generateAccessAndRefereshTokens = async (userId) => {
     try {
-        const user = await Supplier.findById(userId);
+        const user = await WarehouseOwner.findById(userId);
 
         if (!user) {
             throw new ApiError(404, "User not found while generating tokens");
@@ -29,32 +29,30 @@ const generateAccessAndRefereshTokens = async (userId) => {
 
 // Register User
 const registerUser = asyncHandler(async (req, res) => {
-    const { username, fullname, email, phone, password, shopName, category, address } = req.body;
+    const {  fullname, email, password,  } = req.body;
 
-    if (!username || !fullname || !email || !phone || !password || !shopName || !category || !address) {
+    if ( !fullname || !email ||  !password ) {
         throw new ApiError(400, "All fields are required");
     }
 
-    const existedUser = await Supplier.findOne({
-        $or: [{ username: username.trim() }, { email: email.trim() }]
-    });
-
+   const existedUser = await WarehouseOwner.findOne({
+  $or: [
+    { email: email.trim() },
+    { fullname: fullname.trim() } // only if you treat fullname as unique
+  ]
+});
     if (existedUser) {
-        throw new ApiError(400, "User with username or email already exists");
+        throw new ApiError(400, "User with email or fullname already exists");      
     }
-
-    const user = await Supplier.create({
+    const user = await WarehouseOwner.create({
         fullname,
-        phone,
-        shopName,
-        category,
-        address,
+       
         email,
         password,
-        username,
+       
     });
 
-    const createdUser = await Supplier.findById(user._id).select("-password -refreshToken");
+    const createdUser = await WarehouseOwner.findById(user._id).select("-password -refreshToken");
 
     if (!createdUser) {
         throw new ApiError(500, "Something went wrong while registering the user");
@@ -71,7 +69,7 @@ const loginUser = asyncHandler(async (req, res) => {
         throw new ApiError(400, "Email and password are required");
     }
 
-    const user = await Supplier.findOne({ email: email.trim() });
+    const user = await WarehouseOwner.findOne({ email: email.trim() });
 
     if (!user) {
         throw new ApiError(401, "User does not exist");
@@ -84,7 +82,7 @@ const loginUser = asyncHandler(async (req, res) => {
     }
 
     const { accessToken, refreshToken } = await generateAccessAndRefereshTokens(user._id);
-    const loggedInUser = await Supplier.findById(user._id).select("-password -refreshToken");
+    const loggedInUser = await WarehouseOwner.findById(user._id).select("-password -refreshToken");
 
     const options = {
         httpOnly: true,
@@ -100,7 +98,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
 // Logout User
 const logoutUser = asyncHandler(async (req, res) => {
-    await Supplier.findByIdAndUpdate(req.user._id, { $unset: { refreshToken: 1 } }, { new: true });
+    await WarehouseOwner.findByIdAndUpdate(req.user._id, { $unset: { refreshToken: 1 } }, { new: true });
 
     const options = {
         httpOnly: true,
@@ -124,7 +122,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
 
     try {
         const decodedToken = jwt.verify(incomingRefreshToken, process.env.REFRESH_TOKEN_SECRET);
-        const user = await Supplier.findById(decodedToken?._id);
+        const user = await Warehouseowner.findById(decodedToken?._id);
 
         if (!user || incomingRefreshToken !== user.refreshToken) {
             throw new ApiError(401, "Invalid refresh token");
@@ -155,7 +153,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
         throw new ApiError(401, "Unauthorized");
     }
 
-    const user = await Supplier.findById(userId).select("-password -refreshToken");
+    const user = await WarehouseOwner.findById(userId).select("-password -refreshToken");
 
     if (!user) {
         throw new ApiError(404, "User not found");

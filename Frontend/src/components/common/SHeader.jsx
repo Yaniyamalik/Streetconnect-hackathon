@@ -3,11 +3,14 @@ import { useAuth } from '../hooks/useAuth';
 import { useLanguage } from '../hooks/useLanguage';
 import LanguageToggle from './LanguaugeToggle';
 import { logout } from '../../services/authService';
+import axios from 'axios';
 const SHeader = () => {
   const { user, logout } = useAuth();
   const { t } = useLanguage();
-  const handlelogout = () => {
-    logout
+  const handlelogout = async() => {
+    const response = await axios.post('http://localhost:5000/api/suppliers/logout', {}, {
+    withCredentials: true, // for cookie/token
+  });
     window.location.href = '/login'; // Redirect to login after logout
   };
 

@@ -19,6 +19,10 @@ import bookingrouter from "./routes/bookingRoutes.js";
 import  capsulerouter from './routes/capsuleRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 app.use('/api/users', userRoutes);
+import supplierroutes from './routes/supplierRoutes.js';
+app.use('/api/suppliers', supplierroutes);
+import warehouseOwnerRoutes from './routes/warehouseownerRoutes.js';
+app.use('/api/warehouseowners', warehouseOwnerRoutes);
 
 app.use('/api/warehouses', warehouseRouter);
 app.use('/api/bookings', bookingrouter);

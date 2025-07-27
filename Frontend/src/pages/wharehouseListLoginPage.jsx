@@ -3,11 +3,46 @@ import { useNavigate } from 'react-router-dom';
 
 const WharehouseListLoginPage = () => {
   const [isSignUp, setIsSignUp] = useState(false);
+  const [fullname, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate('/list-warehouse'); // 🔁 Redirect to listing page
+
+    const endpoint = isSignUp
+      ? 'http://localhost:5000/api/warehouseowners/signup'
+      : 'http://localhost:5000/api/warehouseowners/login';
+
+    const payload = isSignUp
+      ? { fullname, email, password }
+      : { email, password };
+
+    try {
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(data?.message || 'Authentication failed');
+        return;
+      }
+
+      // Optional: Save token/user info
+      localStorage.setItem('warehouseToken', data?.token);
+      localStorage.setItem('warehouseOwner', JSON.stringify(data?.user));
+
+      // Navigate to listing page
+      navigate('/list-warehouse');
+    } catch (err) {
+      console.error('Error:', err);
+      alert('Something went wrong. Try again later.');
+    }
   };
 
   return (
@@ -37,6 +72,8 @@ const WharehouseListLoginPage = () => {
             <input
               type="text"
               placeholder="Full Name"
+              value={fullname}
+              onChange={(e) => setFullName(e.target.value)}
               required
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#e8630a]"
             />
@@ -44,12 +81,16 @@ const WharehouseListLoginPage = () => {
           <input
             type="email"
             placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#e8630a]"
           />
           <input
             type="password"
             placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#e8630a]"
           />
