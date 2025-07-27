@@ -25,6 +25,11 @@ const Navbar = () => {
           <Link to="/marketplace" className="text-gray-600 hover:text-[#e8630a] transition">Marketplace</Link>
           <Link to="/warehouse-locator" className="text-gray-600 hover:text-[#e8630a] transition">Warehouse</Link>
           <Link to="/supplier-login" className="text-gray-600 hover:text-[#e8630a] transition">Suppliers</Link>
+             <Link
+                      to="/WharehouseListLoginPage"
+                      className="text-gray-600 hover:text-[#e8630a] transition">
+                      List Warehouse
+                    </Link>
 
           {user ? (
             <>
@@ -54,6 +59,7 @@ const Navbar = () => {
           <Link to="/marketplace" className="block py-2 px-4 text-gray-600 hover:bg-gray-100">Marketplace</Link>
           <Link to="/warehouse-locator" className="block py-2 px-4 text-gray-600 hover:bg-gray-100">Warehouse</Link>
           <Link to="/supplier-login" className="block py-2 px-4 text-gray-600 hover:bg-gray-100">Suppliers</Link>
+          <Link to="/warehouse-list-login" className="block py-2 px-4 text-[#e8630a] font-semibold hover:bg-orange-100"></Link>
 
           {user ? (
             <>

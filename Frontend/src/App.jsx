@@ -18,6 +18,8 @@ import { AuthProvider } from './context/AuthContext';
 import { LanguageProvider } from './context/LanguaueContext';
 import Dashboard from './components/Dashboard/Dashboard';
 import SLogin from './components/Auth/SLogin';
+import WarehouseListingPage from './pages/WarehouseListingPage';
+import WharehouseListLoginPage from './pages/wharehouseListLoginPage'; 
 import SDashboard from './components/dashboard/Sdashboard';
 import SSignup from './components/Auth/SSignup';
  
@@ -43,6 +45,8 @@ function App() {
                   <Route path="/supplier-login" element={<SLogin />} />
                   <Route path="/supplier-dashboard" element={<SDashboard />} />
                   <Route path="/register" element={<SSignup />} />
+                      <Route path="/list-warehouse" element={<WarehouseListingPage />} />
+              <Route path="/WharehouseListLoginPage" element={<WharehouseListLoginPage />} /> {/* ✅ New route */}
                 </Routes>
               </main>
               <Footer />
