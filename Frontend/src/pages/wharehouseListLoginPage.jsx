@@ -12,8 +12,8 @@ const WharehouseListLoginPage = () => {
     e.preventDefault();
 
     const endpoint = isSignUp
-      ? 'http://localhost:5000/api/warehouseowners/signup'
-      : 'http://localhost:5000/api/warehouseowners/login';
+      ? 'https://streetconnect-hackathon.vercel.app/api/warehouseowners/signup'
+      : 'https://streetconnect-hackathon.vercel.app/api/warehouseowners/login';
 
     const payload = isSignUp
       ? { fullname, email, password }
