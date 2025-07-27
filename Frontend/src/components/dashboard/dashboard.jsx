@@ -1,8 +1,8 @@
 import React from 'react';
 import { useAuth } from '../hooks/useAuth';
 import { useLanguage } from '../hooks/useLanguage';
-import Header from '../Common/Header';
-import StatsCard from '../Common/StatsCard';
+import Header from '../common/Header';
+import StatsCard from '../common/StatsCard';
 import Orders from './Orders';
 import Warehouse from './Warehouse';
 
