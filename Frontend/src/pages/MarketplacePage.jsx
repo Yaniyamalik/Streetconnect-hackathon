@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProductCard from '../components/marketplace/ProductCard';
-import FilterSection from '../components/marketplace/FilterSection';
+import FilterSection from '../components/marketplace/Filtersection';
 import CartButton from '../components/marketplace/CartButton';
 import Pagination from '../components/marketplace/Pagination';
-import { useCart } from '../context/CartContext';// Custom hook for cart management
+import { useCart } from '../context/Cartcontext';// Custom hook for cart management
 import { products as sampleProducts } from '../data/marketplaceData';
 import CartSummary  from '../components/marketplace/CartSummary';
 const MarketplacePage = () => {
